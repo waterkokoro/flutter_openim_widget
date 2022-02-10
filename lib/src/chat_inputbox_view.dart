@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_openim_widget/flutter_openim_widget.dart';
@@ -16,6 +18,7 @@ class ChatInputBoxView extends StatefulWidget {
     this.controller,
     this.focusNode,
     this.onSubmitted,
+    this.onChanged,
     this.style,
     this.atStyle,
     this.forceCloseToolboxSub,
@@ -29,6 +32,7 @@ class ChatInputBoxView extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final ValueChanged<String>? onSubmitted;
+  final ValueChanged<String>? onChanged;
   final Widget toolbox;
   final Widget multiOpToolbox;
   final Widget emojiView;
@@ -267,6 +271,13 @@ class _ChatInputBoxViewState extends State<ChatInputBoxView>
           focusNode: widget.focusNode,
           controller: widget.controller,
           inputFormatters: widget.inputFormatters,
+          onChanged: (value) {
+            // 回车发送消息
+            if (null != widget.onSubmitted && value.toString() == '\n') {
+                print('========\n回车发送消息========');
+                widget.onSubmitted!(widget.controller!.text.toString());
+            }
+          },
           // onSubmitted: (value) {
           //   focus();
           //   if (null != widget.onSubmitted) widget.onSubmitted!(value);

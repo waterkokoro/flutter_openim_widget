@@ -10,6 +10,7 @@ class ChatTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final ValueChanged<String>? onSubmitted;
+  final ValueChanged<String>? onChanged;
   final TextStyle? style;
   final TextStyle? atStyle;
   final List<TextInputFormatter>? inputFormatters;
@@ -21,6 +22,7 @@ class ChatTextField extends StatelessWidget {
     this.focusNode,
     this.controller,
     this.onSubmitted,
+    this.onChanged,
     this.style,
     this.atStyle,
     this.inputFormatters,
@@ -43,6 +45,7 @@ class ChatTextField extends StatelessWidget {
       maxLines: 4,
       textInputAction: TextInputAction.newline,
       // onSubmitted: onSubmitted,
+      onChanged: onChanged,
       decoration: InputDecoration(
         border: InputBorder.none,
         isDense: true,
