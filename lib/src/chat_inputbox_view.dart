@@ -271,13 +271,7 @@ class _ChatInputBoxViewState extends State<ChatInputBoxView>
           focusNode: widget.focusNode,
           controller: widget.controller,
           inputFormatters: widget.inputFormatters,
-          onChanged: (value) {
-            // 回车发送消息
-            if (null != widget.onSubmitted && value.toString() == '\n') {
-                print('========\n回车发送消息========');
-                widget.onSubmitted!(widget.controller!.text.toString());
-            }
-          },
+          onChanged: widget.onChanged,
           // onSubmitted: (value) {
           //   focus();
           //   if (null != widget.onSubmitted) widget.onSubmitted!(value);
